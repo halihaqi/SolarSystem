@@ -15,5 +15,11 @@ namespace Hali_Framework
         
         //数据密钥
         public const byte KEY = 233;
+        
+        //太阳系数值
+        //缩放倍率
+        public const int ZOOM_RATIO = 10000;
+        //万有引力常量
+        public const float GRAVITATIONAL_CONSTANT = 6.67E-11f;
     }
 }
