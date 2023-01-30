@@ -7,7 +7,7 @@ using UnityEngine;
 /// 自动创建空物体，不需要拖到场景中,过场景不销毁
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class SinletonAutoMono<T> : MonoBehaviour where T : SinletonAutoMono<T>
+public abstract class SingletonAutoMono<T> : MonoBehaviour where T : SingletonAutoMono<T>
 {
     private static T _instance;
     public static T Instance

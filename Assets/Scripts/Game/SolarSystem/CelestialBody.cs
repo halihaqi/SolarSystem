@@ -27,6 +27,7 @@ namespace Game
         protected override void Awake()
         {
             base.Awake();
+            rb.useGravity = false;
             rb.velocity = initialVelocity;
             SolarSystem.Instance.RegisterBody(this);
         }

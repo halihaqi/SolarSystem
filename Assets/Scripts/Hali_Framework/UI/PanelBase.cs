@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Hali_Framework
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public abstract class BasePanel : MonoBehaviour
+    public abstract class PanelBase : MonoBehaviour
     {
         //UI组件容器，物体名对应物体挂载的所有UI组件
         private Dictionary<string, List<UIBehaviour>> _controlDic = new Dictionary<string, List<UIBehaviour>>();

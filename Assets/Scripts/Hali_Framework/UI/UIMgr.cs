@@ -12,7 +12,7 @@ namespace Hali_Framework
     }
     public class UIMgr : Singleton<UIMgr>
     {
-        private Dictionary<string, BasePanel> panelDic = new Dictionary<string, BasePanel>();
+        private Dictionary<string, PanelBase> panelDic = new Dictionary<string, PanelBase>();
 
         private RectTransform canvas;
         public RectTransform Canvas => canvas;
@@ -46,7 +46,7 @@ namespace Hali_Framework
         /// <param name="panelName">面板物体名</param>
         /// <param name="layer">面板要放的层级</param>
         /// <param name="callback">加载完的回调,OnShow之后</param>
-        public void ShowPanel<T>(string panelName, E_UI_Layer layer = E_UI_Layer.Bot, UnityAction<T> callback = null) where T : BasePanel
+        public void ShowPanel<T>(string panelName, E_UI_Layer layer = E_UI_Layer.Bot, UnityAction<T> callback = null) where T : PanelBase
         {
             if(panelDic.ContainsKey(panelName))
             {
@@ -144,7 +144,7 @@ namespace Hali_Framework
         /// <typeparam name="T"></typeparam>
         /// <param name="panelName">面板名</param>
         /// <returns></returns>
-        public T GetPanel<T>(string panelName) where T : BasePanel
+        public T GetPanel<T>(string panelName) where T : PanelBase
         {
             if (panelDic.ContainsKey(panelName))
                 return panelDic[panelName] as T;

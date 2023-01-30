@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Hali_Framework
 {
-    public class LoadingPanel : BasePanel
+    public class LoadingPanel : PanelBase
     {
         public Slider sliderProgress;
         private Action<int> progressEvent;

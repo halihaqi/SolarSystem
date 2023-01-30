@@ -42,7 +42,7 @@ namespace Hali_Framework
         /// <param name="name">场景名</param>
         /// <param name="panelName">加载界面Panel预设体名</param>
         /// <param name="callback">加载完成的回调</param>
-        public void LoadSceneAsync<T>(string name, string panelName, UnityAction callback) where T : BasePanel
+        public void LoadSceneAsync<T>(string name, string panelName, UnityAction callback) where T : PanelBase
         {
             //先显示LoadingUI
             UIMgr.Instance.ShowPanel<T>(panelName, E_UI_Layer.System, (panel) =>
@@ -69,7 +69,7 @@ namespace Hali_Framework
         }
 
         //异步加载场景协程(有UI遮挡)
-        IEnumerator AsyncLoad<T>(string name, string panelName, UnityAction callback) where T : BasePanel
+        IEnumerator AsyncLoad<T>(string name, string panelName, UnityAction callback) where T : PanelBase
         {
             //申明toProgress表示假的加载进度
             //因为ao.progress在加载小场景时变化太快，效果不好
