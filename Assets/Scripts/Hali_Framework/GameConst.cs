@@ -20,7 +20,7 @@ namespace Hali_Framework
         //缩放倍率
         public const int ZOOM_RATIO = 10000;
         //万有引力常量
-        public const float GRAVITATIONAL_CONSTANT = 6.67E-11f;
+        public const float GRAVITATIONAL_CONSTANT = 667f;
         public const float TIME_STEP = 0.01f;
     }
 }

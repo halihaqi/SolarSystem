@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game
+namespace Game.SolarSystem
 {
     /// <summary>
     /// 受重力影响的物体类，必须带有RigidBody

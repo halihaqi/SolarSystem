@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Hali_Framework;
 using UnityEngine;
 
-namespace Game
+namespace Game.SolarSystem
 {
     /// <summary>
     /// 天体类
@@ -26,24 +26,33 @@ namespace Game
 
         protected override void Awake()
         {
+            if(!Application.isPlaying) return;
             base.Awake();
             rb.useGravity = false;
             rb.velocity = initialVelocity;
+            //质量计算公式
+            //M = gR² / G
+            rb.mass = gravity * radius * radius / GameConst.GRAVITATIONAL_CONSTANT;
+        }
+
+        private void OnEnable()
+        {
+            if(!Application.isPlaying) return;
             SolarSystem.Instance.RegisterBody(this);
         }
 
         private void OnDisable()
         {
+            if(!Application.isPlaying) return;
             SolarSystem.Instance.RemoveBody(this);
         }
 
         //当参数改变时
         private void OnValidate()
         {
+            if(!Application.isEditor) return;
             this.gameObject.name = bodyName;
-            //质量计算公式
-            //M = gR² / G
-            rb.mass = gravity * radius * radius / GameConst.GRAVITATIONAL_CONSTANT;
+            this.transform.localScale = Vector3.one * radius * 100;//放大100倍以便观察
         }
 
         /// <summary>
