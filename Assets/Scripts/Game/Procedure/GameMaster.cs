@@ -1,21 +1,22 @@
 using System;
-using Hali_Framework;
+using HFramework;
 
 namespace Game.Procedure
 {
-    public class GameMaster : SingletonMono<GameMaster>
+    public class GameMaster : SingletonAutoMono<GameMaster>
     {
-        protected override void Awake()
-        {
-            base.Awake();
-            DontDestroyOnLoad(this);
-            ProcedureMgr.Instance.Initialize(FsmMgr.Instance,
-                new InitProcedure());
-        }
-
+        private bool _isInit = false;
+        public bool IsInit => _isInit;
+        
         private void Start()
         {
-            ProcedureMgr.Instance.StartProcedure<InitProcedure>();
+            HEntry.Init();
+            HEntry.ProcedureMgr.Initialize(new InitProcedure(),
+                new BeginProcedure(), new RomaProcedure());
+            HEntry.ProcedureMgr.StartProcedure<InitProcedure>();
+
+            _isInit = true;
         }
+
     }
 }

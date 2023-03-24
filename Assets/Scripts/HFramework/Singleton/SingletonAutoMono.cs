@@ -1,0 +1,29 @@
+using UnityEngine;
+
+namespace HFramework
+{
+    /// <summary>
+    /// 单例模式(继承Mono)
+    /// 自动创建空物体，不需要拖到场景中,过场景不销毁
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class SingletonAutoMono<T> : MonoBehaviour where T : SingletonAutoMono<T>
+    {
+        private static T _instance;
+        public static T Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(T).Name;
+                    _instance = obj.AddComponent<T>();
+                    DontDestroyOnLoad(obj);
+                }
+                return _instance;
+            }
+        }
+
+    }
+}
