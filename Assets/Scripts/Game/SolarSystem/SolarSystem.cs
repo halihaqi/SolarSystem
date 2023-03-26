@@ -102,6 +102,7 @@ namespace Game.SolarSystem
             foreach (var body in allBodies)
             {
                 if(body == calcBody) continue;
+                if(body.rb.position == calcBody.rb.position) continue;
                 _calcVector = body.rb.position - calcBody.rb.position;
                 _calcDir = _calcVector.normalized;
                 _calcDst = _calcVector.sqrMagnitude;
@@ -129,7 +130,7 @@ namespace Game.SolarSystem
             {
                 if(cb == body) continue;
                 body.transform.LookAt(cb.rb.transform);
-                float r = Vector3.Distance(body.rb.transform.position, cb.rb.transform.position);
+                float r = Vector3.Distance(body.rb.position, cb.rb.position);
                 initVelocity += body.rb.transform.right *
                                 Mathf.Sqrt(GameConst.GRAVITATIONAL_CONSTANT * cb.rb.mass / r);
             }

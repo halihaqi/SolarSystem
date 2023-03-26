@@ -1,4 +1,3 @@
-using System;
 using HFramework;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ namespace Game.SolarSystem
     /// <summary>
     /// 天体类
     /// </summary>
+    [ExecuteInEditMode]
     public class CelestialBody : GravityObject
     {
         //自定义天体参数
@@ -45,10 +45,11 @@ namespace Game.SolarSystem
 
         private void FixedUpdate()
         {
+            if(!Application.isPlaying) return;
             transform.RotateAround(transform.position, Vector3.up, Time.fixedDeltaTime * rotateSpeed);
         }
 
-        private void OnValidate()
+        protected virtual void OnValidate()
         {
             gameObject.name = bodyName;
             gameObject.GetComponent<Rigidbody>().mass = mass;
@@ -58,7 +59,17 @@ namespace Game.SolarSystem
             {
                 var obj = new GameObject("LineRenderer");
                 obj.transform.SetParent(transform, false);
-                obj.AddComponent<LineRenderer>().enabled = false;
+                var lr = obj.AddComponent<LineRenderer>();
+                lr.material = Resources.Load<Material>("Material/Line");
+                if (gameObject.TryGetComponent<MeshRenderer>(out var mr))
+                {
+                    if (mr.sharedMaterial != null)
+                    {
+                        lr.startColor = mr.sharedMaterial.color;
+                        lr.endColor = mr.sharedMaterial.color;
+                    }
+                }
+                lr.enabled = false;
             }
         }
         

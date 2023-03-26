@@ -43,5 +43,27 @@ namespace HFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         void ChangeState<T>() where T : ProcedureBase;
+        
+        /// <summary>
+        /// 设置流程数据。
+        /// </summary>
+        /// <typeparam name="TData">数据的类型。</typeparam>
+        /// <param name="name">数据名称。</param>
+        /// <param name="data">要获取的数据。</param>
+        void SetData<TData>(string name, TData data);
+
+        /// <summary>
+        /// 移除流程数据。
+        /// </summary>
+        /// <param name="name">数据名称。</param>
+        /// <returns>是否移除数据成功。</returns>
+        bool RemoveData(string name);
+
+        /// <summary>
+        /// 获取流程数据。
+        /// </summary>
+        /// <param name="name">数据名称。</param>
+        /// <returns>要获取的数据。</returns>
+        TData GetData<TData>(string name);
     }
 }

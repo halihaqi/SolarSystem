@@ -19,5 +19,8 @@
         //Scene
         SCENE_LOADING,
         SCENE_LOAD_COMPLETE,
+        
+        //Body
+        BODY_UPDATE,
     }
 }

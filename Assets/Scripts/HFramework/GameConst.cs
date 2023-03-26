@@ -27,6 +27,11 @@ namespace HFramework
         //Scene
         public const string BEGIN_SCENE = "BeginScene";
         public const string ROMA_SCENE = "RomaScene";
+        public const string CREATE_SCENE = "CreateScene";
+
+        //Data
+        public const string CUSTOM_GALAXY_FILE = "CustomGalaxy";
+        public const string CUSTOM_GALAXY_DATA = "CustomGalaxyData";
 
 
         //
@@ -34,5 +39,7 @@ namespace HFramework
         public const float GRAVITATIONAL_CONSTANT = 10;
         public const string CELESTIAL_TAG = "CelestialBody";
         public const float CELESTIAL_ZOOM = 0.0001f;
+        public const int CUSTOM_GALAXY_NUM = 20;
+        public const string BODY_PATH = "Prefabs/Undefined";
     }
 }

@@ -20,7 +20,7 @@ namespace Game.UI
         {
             base.OnInit(userData);
             _btnPlay = GetControl<Button>("btn_play");
-            _btnExplore = GetControl<Button>("btn_explore");
+            _btnExplore = GetControl<Button>("btn_create");
             _btnOption = GetControl<Button>("btn_option");
             _btnExit = GetControl<Button>("btn_exit");
             _imgBtns = GetControl<Image>("img_btns");
@@ -34,8 +34,11 @@ namespace Game.UI
             base.OnClick(btnName);
             switch (btnName)
             {
-                case "btn_explore":
-                    HEntry.ProcedureMgr.ChangeState<RomaProcedure>();
+                case "btn_play":
+                    HEntry.UIMgr.ShowPanel<ChooseModePop>(GameConst.UIGROUP_POP);
+                    break;
+                case "btn_create":
+                    HEntry.UIMgr.ShowPanel<ChooseGalaxyPop>(GameConst.UIGROUP_POP);
                     break;
                 case "btn_exit":
                     Application.Quit();

@@ -1,8 +1,7 @@
-﻿using HFramework;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Hali_Framework
+namespace HFramework
 {
     public abstract class PopBase : PanelBase
     {

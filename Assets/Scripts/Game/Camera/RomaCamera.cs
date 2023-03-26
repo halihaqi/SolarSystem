@@ -8,15 +8,14 @@ namespace Game
     [RequireComponent(typeof(Camera))]
     public class RomaCamera : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 3;
-        [SerializeField] private float lookSensitive = 3;
-        [SerializeField] private float sprintSpeed = 10;
+        [SerializeField] private float moveSpeed = 10;
+        [SerializeField] private float lookSensitive = 300;
+        [SerializeField] private float sprintSpeed = 20;
         [SerializeField] private float sprintMultSpeed = 10;
-        [SerializeField] private float sprintThreshold = 80;
+        [SerializeField] private float sprintThreshold = 100;
 
         private Camera _cam;
         private bool _useMove = false;
-        private bool _isSprint = false;
         private float _threshold = 0.01f;//输入最低门槛
         private float _camTargetYaw;
         private float _camTargetPitch;
@@ -42,7 +41,7 @@ namespace Game
             var oriAngle = transform.eulerAngles;
             _camTargetPitch = oriAngle.x;
             _camTargetYaw = oriAngle.y;
-            _realSpeed = moveSpeed;
+            _realSpeed = 0;
         }
 
         private void OnEnable()
@@ -74,14 +73,13 @@ namespace Game
         {
             if (key == KeyCode.LeftShift)
             {
-                _isSprint = true;
                 _realSpeed = sprintSpeed;
             }
         }
         
         private void OnSprinting(KeyCode key)
         {
-            if (key == KeyCode.LeftShift)
+            if (key == KeyCode.LeftShift && _useMove)
             {
                 _realSpeed += Time.deltaTime * sprintMultSpeed;
                 _realSpeed = Mathf.Min(sprintThreshold, _realSpeed);
@@ -90,9 +88,8 @@ namespace Game
         
         private void OnUnSprint(KeyCode key)
         {
-            if (key == KeyCode.LeftShift)
+            if (key == KeyCode.LeftShift && _useMove)
             {
-                _isSprint = false;
                 _realSpeed = moveSpeed;
             }
         }
@@ -102,6 +99,7 @@ namespace Game
             if (key == 1)
             {
                 _useMove = true;
+                _realSpeed = moveSpeed;
                 HEntry.InputMgr.CursorMode = CursorLockMode.Locked;
             }
         }
@@ -111,6 +109,7 @@ namespace Game
             if (key == 1)
             {
                 _useMove = false;
+                _realSpeed = 0;
                 HEntry.InputMgr.CursorMode = CursorLockMode.None;
             }
         }

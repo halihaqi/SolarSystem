@@ -39,6 +39,7 @@ namespace Game.SolarSystem
 
         private void OnDisable()
         {
+            if(!Application.isPlaying) return;
             ClearOrbit();
         }
 

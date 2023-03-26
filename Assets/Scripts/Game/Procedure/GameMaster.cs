@@ -12,7 +12,7 @@ namespace Game.Procedure
         {
             HEntry.Init();
             HEntry.ProcedureMgr.Initialize(new InitProcedure(),
-                new BeginProcedure(), new RomaProcedure());
+                new BeginProcedure(), new RomaProcedure(), new CreateProcedure());
             HEntry.ProcedureMgr.StartProcedure<InitProcedure>();
 
             _isInit = true;
